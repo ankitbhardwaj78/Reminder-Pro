@@ -15,10 +15,27 @@ addReminder() {
   this.props.addReminder(this.state.text);
 }
 
-
+renderReminders() {
+  const { reminders } = this.props;
+  return (
+    <ul className="list-group col-sm-4">
+    {
+      reminders.map(reminder => {
+        return (
+          <li key={reminder.id} className="list-group-item">
+          <div>{reminder.text}</div>
+          </li>
+        )
+      })
+    }
+    </ul>
+  )
+}
 
   render(){
+    console.log('This',this.props);
     return(
+
       <div className="App">
        <div className="title">
        reminder pro
@@ -39,10 +56,16 @@ addReminder() {
            Add reminder
            </button>
            </div>
+           { this.renderReminders() }
       </div>
     )
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    reminders:state
+  }
+}
 
-export default connect(null,{ addReminder })(App);
+export default connect(mapStateToProps,{ addReminder })(App);
