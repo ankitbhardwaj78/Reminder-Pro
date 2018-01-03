@@ -18,6 +18,8 @@ addReminder() {
 deleteReminder(id) {
   console.log(id);
   console.log(this.props);
+  this.props.deleteReminder(id);
+
 }
 
 
